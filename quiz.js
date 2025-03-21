@@ -34,7 +34,7 @@ const questions = [
         image: "blank.png",
     },
     {
-        question:"G = Number of months in a calender year having the number of days greater than or equal to ",
+        question:"G = Number of months in a calender year having the number of days greater than or equal to 30 ",
         image: "GM_Image_02.png",
     },
     {
