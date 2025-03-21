@@ -34,7 +34,7 @@ const questions = [
         image: "blank.png",
     },
     {
-        question:"G = Number of months in a calender year having the number of days greater than or equal to 30.What is Einstein's famous equation?",
+        question:"G = Number of months in a calender year having the number of days greater than or equal to ",
         image: "GM_Image_02.png",
     },
     {
