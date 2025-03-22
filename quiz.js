@@ -123,21 +123,22 @@ function prevQuestion() {
 }
 
 // Timer Function
-function startTimer(duration, reset = false) {
-    if (reset) {
-        localStorage.removeItem("quizStartTime"); // Clear previous timer data
-        localStorage.setItem("quizStartTime", Math.floor(Date.now() / 1000)); // Set new start time
-    }
-
+function startTimer(duration) {
     let startTime = localStorage.getItem("quizStartTime");
     let currentTime = Math.floor(Date.now() / 1000);
-    let timeLeft = duration - (currentTime - parseInt(startTime));
+    let timeLeft;
 
-    if (timeLeft <= 0) {
-        timeLeft = 0;
-        alert("Time's up! Submitting your quiz...");
-        submitQuiz();
-        return;
+    if (startTime) {
+        timeLeft = duration - (currentTime - parseInt(startTime));
+        if (timeLeft <= 0) {
+            timeLeft = 0;
+            alert("Time's up! Submitting your quiz...");
+            submitQuiz();
+            return;
+        }
+    } else {
+        localStorage.setItem("quizStartTime", currentTime);
+        timeLeft = duration;
     }
 
     function updateTimerDisplay() {
@@ -161,20 +162,7 @@ function startTimer(duration, reset = false) {
             updateTimerDisplay();
         }
     }, 1000);
-}
-
-// Function to start or restart the quiz
-function startQuiz() {
-    startTimer(2 * 60 * 60, true); // Start with 2 hours and reset timer
-}
-
-// Call this when the page loads to resume if quiz is already running
-document.addEventListener("DOMContentLoaded", function () {
-    startTimer(2 * 60 * 60); // Resume timer without reset
-});
-
-// Attach to the start quiz button
-document.getElementById("startQuizButton").addEventListener("click", startQuiz);
+} 
 
 
 
